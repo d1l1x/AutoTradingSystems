@@ -7,5 +7,6 @@ ADD go.mod go.sum ${SYSTEM} ./
 RUN go mod tidy && CGO_ENABLED=0 GOOS=linux go build -o main main.go
 
 FROM alpine:latest
+RUN apk --no-cache add tzdata
 COPY --from=builder /app/main .
 
